@@ -1,6 +1,6 @@
 public class examenEstacionesMeteo {
 
-    //Metodo predefinido
+    // Metodo predefinido
     public static int buscar(String estacion, String[] estaciones) {
 
         for (int i = 0; i < estaciones.length; i++) {
@@ -11,8 +11,8 @@ public class examenEstacionesMeteo {
         return -1;
     }
 
-    //Metodo predefinido
-     static int posMastemperatura(int[] valor) {
+    // Metodo predefinido
+    static int posMastemperatura(int[] valor) {
         int maxTemp = 0;
         for (int i = 1; i < valor.length; i++) {
             if (valor[i] > valor[maxTemp]) {
@@ -36,82 +36,97 @@ public class examenEstacionesMeteo {
         return temperatura;
     }
 
-    //Ejercicio 2
-    public static String [] lasEstacionesActivas (int [] temperaturas, String [] estaciones) {
+    // Ejercicio 2
+    public static String[] lasEstacionesActivas(int[] temperaturas, String[] estaciones) {
         int count = 0;
-        
+
         for (int i = 0; i < temperaturas.length; i++) {
             if (temperaturas[i] != -999) {
                 count++;
             }
         }
 
-        String [] resultado = new String [count];
+        String[] resultado = new String[count];
         int indice = 0;
         for (int i = 0; i < temperaturas.length; i++) {
-            if (temperaturas [i] != -999) {
-                resultado [indice] = estaciones [i] + "" + temperaturas [i];
+            if (temperaturas[i] != -999) {
+                resultado[indice] = estaciones[i] + "" + temperaturas[i];
                 indice++;
             }
         }
         return resultado;
     }
 
-    //Ejercicio 3
-    public static boolean actualizar (int [] temperaturas, String [] estaciones, String estacion, int temperatura) {
-        
+    // Ejercicio 3
+    public static boolean actualizar(int[] temperaturas, String[] estaciones, String estacion, int temperatura) {
+
         int pos = buscar(estacion, estaciones);
         if (pos != -1) {
-            temperaturas [pos] += temperatura;
+            temperaturas[pos] += temperatura;
             return true;
         } else {
             return false;
         }
     }
 
-    //Ejercicio 4
-    public static String [] lasActivasOrden (int [] temperaturas, String [] estaciones) {
-        
+    // Ejercicio 4
+    public static String[] lasActivasOrden(int[] temperaturas, String[] estaciones) {
+
         int count = 0;
         for (int i = 0; i < temperaturas.length; i++) {
             if (temperaturas[i] != -999) {
                 count++;
             }
         }
-        int [] temperaturas2 = new int [temperaturas.length];
+        int[] temperaturas2 = new int[temperaturas.length];
         for (int i = 0; i < temperaturas.length; i++) {
-            temperaturas2 [i] = temperaturas [i];
-            
+            temperaturas2[i] = temperaturas[i];
+
         }
-        String [] resultado = new String [count];
-        for (int i = 0; i < count; i ++) {
+        String[] resultado = new String[count];
+        for (int i = 0; i < count; i++) {
             int tempMax = posMastemperatura(temperaturas2);
-            resultado [i] = estaciones[tempMax] + " " + temperaturas2[tempMax];
-            temperaturas2 [tempMax] = -1; 
+            resultado[i] = estaciones[tempMax] + " " + temperaturas2[tempMax];
+            temperaturas2[tempMax] = -1;
         }
         return resultado;
     }
 
-    //Ejercicio 5
-    public static boolean sinInterferenciasManhattan (char [][] test, int distanciaMinima) {
-        
-        int [][] sensores = new int [3][2];
+    // Ejercicio 5
+    public static boolean sinInterferenciasManhattan(char[][] tablero, int distanciaMinima) {
+
+        int totalSensores = 0;
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                char s = tablero[i][j];
+                if (s == 'N' || s == 'S' || s == 'C') {
+                    totalSensores++;
+                }
+            }
+        }
+
+        int[][] sensores = new int[totalSensores][2];
         int count = 0;
-        for (int i = 0; i < test.length; i++) {
-            for (int j = 0; j < test[i][i].length; j++) {
-                char s = test[i].charAt[j];
-                if (s == 'N' || s == 'S' ||s == 'C' ) {
+
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                char s = tablero[i][j];
+                if (s == 'N' || s == 'S' || s == 'C') {
                     sensores[count][0] = i;
                     sensores[count][1] = j;
                     count++;
                 }
             }
         }
-        for (int i = 0; i < count; i++){
+
+        for (int i = 0; i < count; i++) {
             for (int j = i + 1; j < count; j++) {
-                int dx = sensores [i][0] - sensores [j][0];
-                int dy = sensores [i][1] - sensores [j][1];
-                double dist = dx + dy;
+
+                int dx = Math.abs(sensores[i][0] - sensores[j][0]);
+                int dy = Math.abs(sensores[i][1] - sensores[j][1]);
+
+                int dist = dx + dy;
+
                 if (dist < distanciaMinima) {
                     return false;
                 }
