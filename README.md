@@ -9,7 +9,7 @@ Aquí encontrarás soluciones a problemas que involucran:
 - Lógica de programación y algoritmia.
 - Manipulación de estructuras de datos (Arrays, Matrices).
 - Programación Orientada a Objetos (POO).
-- Resolución de problemas tipo "reto" (como distancia Manhattan, gestión de sensores, etc.).
+- Resolución de problemas tipo "reto" (como distancia Manhattan, iteración en arrays, etc.).
 
 ## 🛠️ Tecnologías
 
