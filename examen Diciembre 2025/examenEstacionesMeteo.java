@@ -22,7 +22,18 @@ public class examenEstacionesMeteo {
         return maxTemp;
     }
 
-    // Ejercicio 1
+    // ============================================================================
+    // EJERCICIO 1: obtenerTemperatura
+    // ============================================================================
+    /**
+     * Obtiene la temperatura de una estación específica.
+     * 
+     * @param estacion     Nombre de la estación a consultar
+     * @param estaciones   Array con los nombres de las estaciones
+     * @param temperaturas Array de temperaturas
+     * @return Temperatura de la estación, o -999 si no existe
+     */
+
     public static int obtenerTemperatura(String estacion, String[] estaciones, int[] temperaturas) {
         int pos = buscar(estacion, estaciones);
 
@@ -36,7 +47,17 @@ public class examenEstacionesMeteo {
         return temperatura;
     }
 
-    // Ejercicio 2
+    // ============================================================================
+    // EJERCICIO 2: lasActivas
+    // ============================================================================
+    /**
+     * Devuelve un array con las estaciones activas y sus temperaturas.
+     * 
+     * @param temperaturas Array de temperaturas (-999 = fuera de servicio)
+     * @param estaciones   Array con los nombres de las estaciones
+     * @return Array de Strings con formato "ESTACION temperatura"
+     */
+
     public static String[] lasEstacionesActivas(int[] temperaturas, String[] estaciones) {
         int count = 0;
 
@@ -57,7 +78,19 @@ public class examenEstacionesMeteo {
         return resultado;
     }
 
-    // Ejercicio 3
+    // ============================================================================
+    // EJERCICIO 3: actualizar
+    // ============================================================================
+    /**
+     * Actualiza la temperatura de una estación específica.
+     * 
+     * @param temperaturas Array de temperaturas a modificar
+     * @param estaciones   Array con los nombres de las estaciones
+     * @param estacion     Nombre de la estación a actualizar
+     * @param nuevaTemp    Nueva temperatura a registrar
+     * @return true si se actualizó correctamente, false si la estación no existe
+     */
+
     public static boolean actualizar(int[] temperaturas, String[] estaciones, String estacion, int temperatura) {
 
         int pos = buscar(estacion, estaciones);
@@ -69,7 +102,17 @@ public class examenEstacionesMeteo {
         }
     }
 
-    // Ejercicio 4
+    // ============================================================================
+    // EJERCICIO 4: lasActivasOrden
+    // ============================================================================
+    /**
+     * Devuelve las estaciones activas ordenadas por temperatura (decreciente).
+     * 
+     * @param temperaturas Array de temperaturas (-999 = fuera de servicio)
+     * @param estaciones   Array con los nombres de las estaciones
+     * @return Array de Strings ordenado de mayor a menor temperatura
+     */
+
     public static String[] lasActivasOrden(int[] temperaturas, String[] estaciones) {
 
         int count = 0;
@@ -92,7 +135,18 @@ public class examenEstacionesMeteo {
         return resultado;
     }
 
-    // Ejercicio 5
+    // ============================================================================
+    // EJERCICIO 5: sinInterferenciasManhattan
+    // ============================================================================
+    /**
+     * Verifica si las estaciones en el mapa tienen suficiente separación
+     * usando distancia Manhattan (sin raíces cuadradas).
+     * 
+     * @param mapa            Cuadrícula con las posiciones de las estaciones
+     * @param distanciaMinima Distancia mínima requerida entre estaciones
+     * @return true si no hay interferencias, false en caso contrario
+     */
+
     public static boolean sinInterferenciasManhattan(char[][] tablero, int distanciaMinima) {
 
         int totalSensores = 0;
